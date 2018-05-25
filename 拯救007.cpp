@@ -17,11 +17,13 @@ int n,len;
 double rad=15.0/2;
 int main()	{
 	zero.x=0,zero.y=0;
-	int ans=0;
+	int ans=0,k=1;
 	scanf("%d %d",&n,&len);
 	for (int i=0;i<n;i++)	scanf("%lf %lf",&coord[i].x,&coord[i].y);
 	for (int i=0;i<n;i++)	{
+		//cout << "TEST" <<endl;
 		if (FirstJump(coord[i])&&!spot[i]){
+			//cout << "***********************************ROUND"<<k++ << "	Point"<< i <<endl;
 			spot[i]=1;
 			ans=dfs(coord[i]);
 			if (ans)	break;
@@ -37,12 +39,15 @@ int FirstJump(point pnt)	{
 }
 int dfs(point p)	{
 	if (IsSave(p))	return 1;
-	for (int i=0;i<n;i++)
+	for (int i=0;i<n;i++){
 		if (!spot[i]&&dis(p,coord[i])<=len){
-			printf("%.2f",dis(p,coord[i]));
-			dfs(coord[i]);
+			//cout << spot[i] << "	"<< dis(p,coord[i]);
+			//cout << "dfs is operated at "<<i<<"	"<<endl;
+			spot[i]=1;
+			if(dfs(coord[i]))	return 1;
+			//else	printf("A dfs is down\n");
 		}
-	return 0;
+	}
 }
 int IsSave(point p)	{
 	if (p.x-len<-50)	return 1;
