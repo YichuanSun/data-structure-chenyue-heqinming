@@ -54,7 +54,7 @@ void bfs(int i)	{
 		temp=que.front();
 		que.pop();
 		for (int j=0;j<n;j++)	{
-			if (!spot[j]&&IsEdge(graph,temp,j))	{	//temp，或者graph[j].next就是j所有相邻点的集合 
+			if (!spot[j]&&IsEdge(graph,temp,j))	{	//temp，或者graph[j].next就是j所有邻接点的集合 
 				printf("%d ",j);
 				spot[j]=1;
 				que.push(graph[j].next);		//相当于将j的所有邻接点加入队列 
